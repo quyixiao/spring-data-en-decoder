@@ -2,5 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.data.en.decoder.dao.user.UserPhoneDao">
 
+
+    <select id="selectUserPhoneByUserNameEns" resultType="com.data.en.decoder.entity.user.UserPhone">
+        select *   from lt_user_phone where  user_name_en in
+        <foreach collection="list" separator="," open="(" close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
+
+
+
+    <select id="selectUserPhoneByUserNameEnEntitys" resultType="com.data.en.decoder.entity.user.UserPhone">
+        select *   from lt_user_phone where  user_name_en in
+        <foreach collection="list" separator="," open="(" close=")" item="item">
+            #{item.userNameEn}
+        </foreach>
+    </select>
+
+    <select id="selectUserPhoneByArrayUserNameEns" resultType="com.data.en.decoder.entity.user.UserPhone">
+        select *   from lt_user_phone where  user_name_en in
+        <foreach collection="array" separator="," open="(" close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectUserPhoneByUserNameArrayEnEntitys" resultType="com.data.en.decoder.entity.user.UserPhone">
+        select *   from lt_user_phone where  user_name_en in
+        <foreach collection="array" separator="," open="(" close=")" item="item">
+            #{item.userNameEn}
+        </foreach>
+    </select>
+
+    <select id="selectUserPhoneByArrayUserNameEnsAndRealName" resultType="com.data.en.decoder.entity.user.UserPhone">
+        select *   from lt_user_phone where  user_name_en in
+        <foreach collection="arrays" separator="," open="(" close=")" item="item">
+            #{item}
+        </foreach>
+        and real_name_en = #{realNameEn}
+    </select>
 </mapper>
 
