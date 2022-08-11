@@ -40,5 +40,9 @@
         </foreach>
         and real_name_en = #{realNameEn}
     </select>
+
+    <select id="selectUserPhoneByUsernNameObject" resultType="com.data.en.decoder.entity.user.UserPhone">
+        select *   from lt_user_phone where  user_name_en = #{userNameEn} limit 1
+    </select>
 </mapper>
 

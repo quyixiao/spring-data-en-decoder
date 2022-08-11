@@ -39,7 +39,7 @@ public class MysqlMain {
 
     public static String pre = "";
 
-    public static String mysql_dbname = "lt_biz";
+    public static String mysql_dbname = "lz_test";
     public static String mysql_username = "ldd_biz";
     public static String mysql_password = "Hello1234";
 
@@ -83,7 +83,7 @@ public class MysqlMain {
         System.out.println(save_path);
 
         List<TablesBean> list = new ArrayList<TablesBean>();
-        list.add(new TablesBean("lt_user_phone"));
+        list.add(new TablesBean("lt_stage_borrow"));
 
         List<TablesBean> list2 = new ArrayList<TablesBean>();
         Map<String, String> map = MysqlUtil2ShowCreateTable.getComments();

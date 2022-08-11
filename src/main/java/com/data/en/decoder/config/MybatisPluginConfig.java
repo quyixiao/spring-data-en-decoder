@@ -1,7 +1,6 @@
 package com.data.en.decoder.config;
 
 
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.lz.mybatis.plugin.config.ResolverBeanPostProcessor;
 import com.lz.mybatis.plugins.interceptor.EncryptTableConfig;
 import com.lz.mybatis.plugins.interceptor.utils.PSpringContextUtils;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.Collections;
 
 @Slf4j
 @Configuration
@@ -35,9 +33,8 @@ public class MybatisPluginConfig {
     }
 
 
-
     @Bean
-    public PSpringContextUtils pSpringContextUtils(){
+    public PSpringContextUtils pSpringContextUtils() {
         return new PSpringContextUtils();
     }
 

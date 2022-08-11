@@ -2,6 +2,12 @@ package com.lz.eb.api;
 
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.executor.ErrorContext;
+import org.apache.ibatis.mapping.ParameterMapping;
+import org.apache.ibatis.mapping.ParameterMode;
+import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.TypeHandler;
 import org.mockito.internal.util.StringUtil;
 
 public class FieldBean {
@@ -101,5 +107,9 @@ public class FieldBean {
     public void setJavaTypeFull(String javaTypeFull) {
         this.javaTypeFull = javaTypeFull;
     }
+
+
+
+
 
 }
