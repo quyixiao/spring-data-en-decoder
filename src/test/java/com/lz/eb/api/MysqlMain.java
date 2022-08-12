@@ -35,13 +35,13 @@ public class MysqlMain {
     public static String service_package = "";
     public static String service_impl_package = "";
 
-    public static String mysql_url = "jdbc:mysql://172.16.157.238:3306";
+    public static String mysql_url = "jdbc:mysql://localhost:3306";
 
     public static String pre = "";
 
     public static String mysql_dbname = "lz_test";
-    public static String mysql_username = "ldd_biz";
-    public static String mysql_password = "Hello1234";
+    public static String mysql_username = "admin";
+    public static String mysql_password = "123456";
 
     public static void initApi(String package_name) throws Exception {
         String path = ResourceUtils.getURL("classpath:").getPath();
@@ -143,7 +143,12 @@ public class MysqlMain {
             System.out.println(fileName);
         }
         List<TablesBean> list = new ArrayList<TablesBean>();
-        list.add(new TablesBean("lt_act_draw_award_config"));
+        
+        
+        list.add(new TablesBean("lt_user_phone"));
+        list.add(new TablesBean("lt_stage_borrow"));
+
+        
         Map<String, String> map = MysqlUtil2ShowCreateTable.getComments();
         for (int i = 0; i < list.size(); i++) {
             TablesBean obj = list.get(i);

@@ -1,41 +1,24 @@
-CREATE TABLE `lt_user_phone` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键，自增id',
-  `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除状态，1：删除，0：有效',
-  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后修改时间',
-  `user_name_en` varchar(64) NOT NULL DEFAULT '' COMMENT '用户名',
-  `real_name_en` varchar(64) NOT NULL DEFAULT '' COMMENT '姓名',
-  `id_number` varchar(32) NOT NULL DEFAULT '' COMMENT '身份证号',
-  `id_number_en` varchar(64) DEFAULT '' COMMENT '身份证号',
-  `fail_count` tinyint(4) NOT NULL DEFAULT '-1' COMMENT '登录失败次数',
-  `version` int(11) NOT NULL DEFAULT '1' COMMENT '版本号',
-  `unique_code` varchar(32) NOT NULL DEFAULT '' COMMENT '用户身份唯一标识, ''11位日期+5位(字符串+字母随机)  base64不可逆加密'',',
-  `is_main` tinyint(4) DEFAULT '0' COMMENT '是否是主卡 1: 是   0 :否',
-  `user_pool_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '用户是否在用户池, 1:是, 0:否',
-  `user_no` varchar(64) DEFAULT '' COMMENT '沃钱包用户的用户编号',
-  `cnl_code` varchar(64) DEFAULT '' COMMENT '渠道编码',
-  `channel_code` varchar(64) NOT NULL DEFAULT '' COMMENT '子渠道编号',
-  `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '用户标识 1:可借银行产品 2:可借小贷产品',
-  `mark_json` varchar(1000) NOT NULL DEFAULT '' COMMENT '用户标记json类型, area用户区域, 0:不关心 1:黑龙江',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_user_name_en` (`user_name_en`) USING BTREE,
-  KEY `Index_uniqueCode` (`unique_code`) USING BTREE,
-  KEY `idx_user_no` (`user_no`),
-  KEY `index_id_number` (`id_number_en`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+CREATE TABLE lt_user_phone (
+id bigint(20) NOT NULL AUTO_INCREMENT COMMENT ‘主键，自增id’,
+is_delete tinyint(4) NOT NULL DEFAULT ‘0’ COMMENT ‘是否删除状态，1：删除，0：有效’,
+gmt_create datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT ‘创建时间’,
+gmt_modified datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT ‘最后修改时间’,
+user_name_en varchar(64) NOT NULL DEFAULT ‘’,
+real_name_en varchar(64) NOT NULL DEFAULT ‘’,
+unique_code varchar(32) NOT NULL DEFAULT ‘’,
+cnl_code varchar(64) DEFAULT ‘’,
+type tinyint(4) NOT NULL DEFAULT ‘1’,
+PRIMARY KEY (id),
+KEY Index_uniqueCode (unique_code) USING BTREE,
+KEY index_user_name_en (user_name_en) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT=‘用户表’;
 
-
-
-
-CREATE TABLE `lt_stage_borrow` (
-  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-  `is_delete` bigint(4) NOT NULL DEFAULT '0' COMMENT '是否删除',
-  `gmt_create` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `gmt_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `gmt_repay` datetime DEFAULT NULL COMMENT '还款时间(与还款表相对应)',
-  `borrow_no` varchar(32) DEFAULT NULL COMMENT '借款编号',
-  `unique_code` varchar(20) DEFAULT NULL COMMENT '用户唯一标识',
-  PRIMARY KEY (`id`),
-  KEY `idx_borrowcach_uid` (`unique_code`),
-  KEY `idx_borrowcash_borrowno` (`borrow_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='分期借款表';
+CREATE TABLE lt_stage_borrow (
+id bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT ‘自增主键’,
+is_delete bigint(4) NOT NULL DEFAULT ‘0’ COMMENT ‘是否删除’,
+gmt_create datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+gmt_modified datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+unique_code varchar(20) DEFAULT NULL,
+PRIMARY KEY (id),
+KEY idx_borrowcach_uid (unique_code)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT=‘分期借款表’;

@@ -11,7 +11,7 @@ import java.util.Date;import java.util.Date;
 * 菜单权限表
 * </p>*分期借款表
 * @author quyixiao
-* @since 2022-08-11
+* @since 2022-08-12
 */
 
 @Data
@@ -26,10 +26,6 @@ public class StageBorrow implements java.io.Serializable {
     private Date gmtCreate;
     //
     private Date gmtModified;
-    //还款时间(与还款表相对应)
-    private Date gmtRepay;
-    //借款编号
-    private String borrowNo;
     //用户唯一标识
     private String uniqueCode;
     /**
@@ -93,36 +89,6 @@ public class StageBorrow implements java.io.Serializable {
     }
 
     /**
-     * 还款时间(与还款表相对应) 
-     * @return
-     */
-    public Date getGmtRepay() {
-        return gmtRepay;
-    }
-    /**
-     * 还款时间(与还款表相对应) 
-     * @param gmtRepay
-     */
-    public void setGmtRepay(Date gmtRepay) {
-        this.gmtRepay = gmtRepay;
-    }
-
-    /**
-     * 借款编号 
-     * @return
-     */
-    public String getBorrowNo() {
-        return borrowNo;
-    }
-    /**
-     * 借款编号 
-     * @param borrowNo
-     */
-    public void setBorrowNo(String borrowNo) {
-        this.borrowNo = borrowNo;
-    }
-
-    /**
      * 用户唯一标识 
      * @return
      */
@@ -144,8 +110,6 @@ public class StageBorrow implements java.io.Serializable {
                 ",isDelete=" + isDelete +
                 ",gmtCreate=" + gmtCreate +
                 ",gmtModified=" + gmtModified +
-                ",gmtRepay=" + gmtRepay +
-                ",borrowNo=" + borrowNo +
                 ",uniqueCode=" + uniqueCode +
                 "}";
     }
