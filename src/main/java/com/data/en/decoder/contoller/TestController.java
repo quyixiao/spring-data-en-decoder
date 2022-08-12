@@ -38,10 +38,7 @@ public class TestController {
         UserPhone userPhone = new UserPhone();
         userPhone.setUserNameEn("18488888888");
         userPhone.setRealNameEn("张三");
-        userPhone.setIdNumberEn("483898329832983");
-        userPhone.setUserNo("89329832");
         userPhone.setCnlCode("chenn");
-        userPhone.setChannelCode("3232");
         userPhone.setType(1);
         userPhoneDao.insertUserPhone(userPhone);
         return "sucess";
@@ -290,7 +287,6 @@ public class TestController {
     }
 
 
-
     // http://localhost:8502/api/test17
     @RequestMapping("/test17")
     public String test17() throws Exception {
@@ -311,6 +307,19 @@ public class TestController {
         for(StageBorrowDto4 stageBorrowDto : borrows){
             UserPhone userPhone = stageBorrowDto.getUserPhone();
             System.out.println(JSON.toJSONString(userPhone));
+        }
+        return "success";
+    }
+
+
+    // http://localhost:8502/api/test19
+    @RequestMapping("/test19")
+    public String test19() throws Exception {
+        List<StageBorrowDto5> borrows = stageBorrowDao.selectStageBorrowByAllDto5();
+        for(StageBorrowDto5 stageBorrowDto : borrows){
+            UserPhone userPhone = stageBorrowDto.getUserPhone();
+            System.out.println(JSON.toJSONString(userPhone));
+
         }
         return "success";
     }

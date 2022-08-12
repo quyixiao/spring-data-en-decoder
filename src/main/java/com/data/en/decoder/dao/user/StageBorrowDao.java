@@ -45,4 +45,6 @@ public interface StageBorrowDao extends BaseMapper<StageBorrow> {
 	List<StageBorrowDto3> selectStageBorrowByAllDto3();
 
 	List<StageBorrowDto4> selectStageBorrowByAllDto4();
+
+	List<StageBorrowDto5> selectStageBorrowByAllDto5();
 }

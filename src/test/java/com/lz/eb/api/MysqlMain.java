@@ -40,7 +40,7 @@ public class MysqlMain {
     public static String pre = "";
 
     public static String mysql_dbname = "lz_test";
-    public static String mysql_username = "admin";
+    public static String mysql_username = "ldd_biz";
     public static String mysql_password = "123456";
 
     public static void initApi(String package_name) throws Exception {
@@ -83,7 +83,7 @@ public class MysqlMain {
         System.out.println(save_path);
 
         List<TablesBean> list = new ArrayList<TablesBean>();
-        list.add(new TablesBean("lt_stage_borrow"));
+        list.add(new TablesBean("lt_user_login"));
 
         List<TablesBean> list2 = new ArrayList<TablesBean>();
         Map<String, String> map = MysqlUtil2ShowCreateTable.getComments();
