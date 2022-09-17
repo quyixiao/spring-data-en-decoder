@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 
 public class TestJdbcTest {
 
-    @Test
+//    @Test
     public void jdbcQuery() {
         Connection conn = null;
         PreparedStatement pstemt = null;

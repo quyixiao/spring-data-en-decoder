@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.data.en.decoder.dao.user.StageBorrowDao;
 import com.data.en.decoder.dao.user.UserPhoneDao;
 import com.data.en.decoder.entity.user.*;
+import com.data.en.decoder.service.user.ServiceA;
 import com.data.en.decoder.service.user.StageBorrowService;
 import com.data.en.decoder.service.user.UserPhoneService;
 import com.data.en.decoder.utils.ISelect;
@@ -323,6 +324,30 @@ public class TestController {
         }
         return "success";
     }
+
+
+    // http://localhost:8502/api/test20
+    @RequestMapping("/test20")
+    public String test20() throws Exception {
+        userPhoneService.testLogInfo();
+
+
+        return "success";
+    }
+
+
+    @Autowired
+    private ServiceA serviceA;
+
+    // http://localhost:8502/api/test21
+    @RequestMapping("/test21")
+    public String test21() throws Exception {
+        serviceA.methodA();
+
+
+        return "success";
+    }
+
 
 
 }

@@ -11,10 +11,13 @@ package com.data.en.decoder.service.impl.user;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.data.en.decoder.dao.user.UserPhoneDao;
 import com.data.en.decoder.entity.user.UserPhone;
+import com.data.en.decoder.service.user.UserLoginService;
 import com.data.en.decoder.service.user.UserPhoneService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
+@Slf4j
 public class UserPhoneServiceImpl extends ServiceImpl<UserPhoneDao, UserPhone> implements UserPhoneService {
 
 
@@ -22,6 +25,8 @@ public class UserPhoneServiceImpl extends ServiceImpl<UserPhoneDao, UserPhone> i
 	private UserPhoneDao userPhoneDao;
 
 
+	@Autowired
+	private UserLoginService userLoginService;
 
 	@Override
 	public UserPhone selectUserPhoneById(Long id){
@@ -63,6 +68,15 @@ public class UserPhoneServiceImpl extends ServiceImpl<UserPhoneDao, UserPhone> i
 		return userPhoneDao.deleteUserPhoneById(id);
 	}
 
+	@Override
+	public void testLogInfo() {
+		userPhoneDao.selectUserPhoneById(1l);
+		log.info("测试方法调用链+++++++++++++++++++++++++++++");
+
+		userPhoneDao.selectUserPhoneById(2l);
+		log.info("测试方法调用链================================");
+		userLoginService.selectUserLoginById(1l);
+	}
 
 
 }

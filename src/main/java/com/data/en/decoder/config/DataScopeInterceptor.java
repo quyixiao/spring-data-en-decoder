@@ -19,6 +19,7 @@ package com.data.en.decoder.config;
 
 import com.baomidou.mybatisplus.core.toolkit.PluginUtils;
 import com.baomidou.mybatisplus.extension.handlers.AbstractSqlParserHandler;
+import com.data.en.decoder.aop.ServiceAop;
 import com.data.en.decoder.utils.OrderUtil;
 import com.data.en.decoder.utils.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +63,33 @@ public class DataScopeInterceptor extends AbstractSqlParserHandler implements In
         Object parameterObject = boundSql.getParameterObject();
         MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
         String mapperdId = getMapperId(mappedStatement);
+
+
+
+        Throwable throwable = new Throwable();
+
         String sqlCommandTypePre =  mapperdId + " | ";
+
+        String peek0 = ServiceAop.peek();
+        if (StringUtils.isNotBlank(peek0)) {
+            StackTraceElement[] stackTraceElements = throwable.getStackTrace();
+            String classInfos[] = peek0.split(":");
+            int i = 0;
+            for (StackTraceElement stackTraceElement : stackTraceElements) {
+                i++;
+                if (stackTraceElement.getClassName().equals(classInfos[0]) && stackTraceElement.getMethodName().equals(classInfos[1])) {
+                    String className = stackTraceElement.getClassName();
+                    int lastIndexOf = className.lastIndexOf(".");
+                    className = className.substring(lastIndexOf + 1 );
+                    sqlCommandTypePre = className + ":" + stackTraceElement.getLineNumber() + ":" + sqlCommandTypePre + " ";
+                }
+                if (i > 100) {          // 为了性能考虑，最多找100个栈吧
+                    break;
+                }
+            }
+        }
+
+
         if (SqlCommandType.INSERT.equals(mappedStatement.getSqlCommandType())) {
             sqlCommandTypePre = "INSERT= " + mapperdId + " | ";
         } else if (SqlCommandType.UPDATE.equals(mappedStatement.getSqlCommandType())) {

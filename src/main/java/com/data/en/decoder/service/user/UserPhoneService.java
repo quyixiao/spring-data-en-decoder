@@ -31,4 +31,5 @@ public interface UserPhoneService extends IService<UserPhone> {
 	int deleteUserPhoneById(Long id);
 
 
+    void testLogInfo();
 }

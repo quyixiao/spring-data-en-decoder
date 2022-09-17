@@ -17,6 +17,7 @@ import com.lz.mybatis.plugin.annotations.Row;
 import com.lz.mybatis.plugins.interceptor.annotation.Bean2Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
