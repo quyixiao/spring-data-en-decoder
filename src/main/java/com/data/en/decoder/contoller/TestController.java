@@ -350,4 +350,14 @@ public class TestController {
 
 
 
+    // http://localhost:8502/api/test22
+    @RequestMapping("/test22")
+    public String test22() throws Exception {
+        UserPhone userPhone = new UserPhone();
+        userPhone.setUserNameEn("89383");
+        userPhoneDao.insertUserPhone(userPhone);
+        return "success";
+    }
+
+
 }

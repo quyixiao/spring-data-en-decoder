@@ -56,12 +56,18 @@ public class DataScopeInterceptor extends AbstractSqlParserHandler implements In
     public Object intercept(Invocation invocation) throws Throwable {
         StatementHandler statementHandler = (StatementHandler) PluginUtils.realTarget(invocation.getTarget());
         MetaObject metaObject = SystemMetaObject.forObject(statementHandler);
+
+        MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
+// insert 语句的sql  在其他地方
+        if (SqlCommandType.INSERT.equals(mappedStatement.getSqlCommandType())) {
+            return invocation.proceed();
+        }
+
         this.sqlParser(metaObject);
         // 先判断是不是SELECT操作
         BoundSql boundSql = (BoundSql) metaObject.getValue("delegate.boundSql");
         String originalSql = boundSql.getSql();
         Object parameterObject = boundSql.getParameterObject();
-        MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
         String mapperdId = getMapperId(mappedStatement);
 
 

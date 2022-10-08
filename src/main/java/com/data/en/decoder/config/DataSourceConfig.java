@@ -55,7 +55,7 @@ public class DataSourceConfig implements EnvironmentAware {
 		sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
 				.getResources(env.getProperty("mybatis-plus.mapper-locations")));
 		sessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-		Interceptor[] interceptor = {paginationInterceptor,new DataScopeInterceptor(),
+		Interceptor[] interceptor = {paginationInterceptor,new DataScopeInterceptor(),new SQLInsertLogInterceptr(),
 				new DataQueryEncryptScopeInterceptor(),
 				new DataUpdateEncryptScopeInterceptor(),
 				new RestoreQueryDataScopeInterceptor(),

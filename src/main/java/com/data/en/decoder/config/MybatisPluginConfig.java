@@ -26,6 +26,8 @@ public class MybatisPluginConfig {
     }
 
 
+
+
     @Bean
     public ResolverBeanPostProcessor resolverBeanPostProcessor() {
 
